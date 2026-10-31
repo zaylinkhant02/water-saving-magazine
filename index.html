@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#F1F3F4">
+    <title>Every Drop Counts</title>
+    <link rel="icon" type="image/svg+xml" href="assets/svg/favicon-water.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/magazine.css">
+    <link rel="stylesheet" href="css/motion.css">
+    <link rel="stylesheet" href="css/reduced-motion.css">
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+    <script type="module" src="js/main.js"></script>
+  </head>
+  <body>
+    <main class="magazine-stage" id="magazine-stage">
+      <section class="magazine-viewport" aria-label="Every Drop Counts magazine">
+        <div id="magazine" aria-label="Magazine pages">
+          <div class="page page-cover" data-density="hard">
+            <section class="panel panel-cover" aria-label="Front cover">
+              <span class="cover-waterline" aria-hidden="true">
+                <svg viewBox="0 0 900 180" preserveAspectRatio="none">
+                  <use href="assets/svg/cover-waterline.svg#cover-waterline"></use>
+                </svg>
+              </span>
+              <span class="cover-paper">
+                <span class="cover-main">
+                  <span class="cover-kicker">Water · Habit · Community</span>
+                  <span class="cover-title">Every Drop<br>Counts</span>
+                  <span class="cover-subtitle">An interactive magazine on water, drought, and the habits that shape our future.</span>
+                  <span class="cover-footer">
+                    <span class="cover-rule"></span>
+                    <span class="cover-credit">
+                      <span>Driving Question: How can we, Year 9 students at Sangria utilize English literature and persuasive writing to raise awareness of disaster preparedness among the residents of our city?</span>
+                      <span>Essential Question: How can we use persuasive communication to encourage current city residents to adopt long-term, drought-resilient water conservation habits?</span>
+                      <span>Created by high-school students.</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </section>
+          </div>
+
+          <div class="page" data-density="soft">
+            <section class="panel panel-left" aria-label="Across Myanmar">
+              <span class="left-waterline" aria-hidden="true">
+                <svg viewBox="0 0 900 180" preserveAspectRatio="none">
+                  <use href="assets/svg/cover-waterline.svg#cover-waterline"></use>
+                </svg>
+              </span>
+              <p class="left-copy">In the weeks before the monsoon breaks, the soil across the dry zone turns to dust. The reservoirs recede, exposing the cracked mud of the riverbed, and the wells that supply nearby villages begin to pull up silt. It is a predictable seasonal clock, and it starts ticking earlier every year.</p>
+            </section>
+          </div>
+
+          <div class="page" data-density="soft">
+            <section class="panel panel-reservoir" id="panel-reservoir" aria-label="The water that passes through">
+              <div class="reservoir-media" aria-label="Pixabay footage of a mountain stream">
+                <img class="reservoir-poster" src="assets/video/reservoir-poster.jpg" alt="">
+                <video class="reservoir-video" src="assets/video/reservoir-loop.mp4" poster="assets/video/reservoir-poster.jpg" muted loop playsinline preload="metadata" aria-label="Looping footage of a mountain stream"></video>
+                <p class="media-error" role="status" hidden>Video unavailable; showing the poster instead.</p>
+                <div class="media-caption">
+                  <h1 class="panel-heading" tabindex="-1">The water that passes through</h1>
+                  <p>A look at the freshwater that moves through the landscape before it ever reaches a tap.</p>
+                </div>
+                <button class="media-toggle" type="button" aria-label="Pause video" data-pause-label="Pause video" data-play-label="Play video">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path class="icon-pause" d="M7 5h4v14H7zM14 5h4v14h-4z"/>
+                    <path class="icon-play" d="M8 5v14l11-7z"/>
+                  </svg>
+                </button>
+                <a class="media-credit" href="https://pixabay.com/videos/river-mountain-stream-forest-creek-201477/" target="_blank" rel="noreferrer">Footage: Pixabay</a>
+              </div>
+              <div class="reservoir-reveal">
+                <div class="water-counter" aria-hidden="true">
+                  <span class="water-counter-number">0</span>
+                  <span class="water-counter-unit">cubic meters</span>
+                </div>
+                <div class="river-frame">
+                  <object class="river-object" data="assets/svg/river-path.svg" type="image/svg+xml" aria-label="A river path across Myanmar">
+                    <span aria-hidden="true"></span>
+                  </object>
+                </div>
+                <p class="reveal-copy">This is the freshwater the world loses every year to drought, deforestation, and poor management. It is enough to meet the annual needs of 280 million people.<br><br>The supply exists, yet the management fails.</p>
+              </div>
+              <div class="flap-stage">
+                <button class="reveal-flap" type="button" aria-expanded="false" aria-label="Reveal the figure">
+                  <span class="flap-invitation">Reveal the figure</span>
+                  <span class="flap-return" aria-hidden="true">Hide the figure</span>
+                </button>
+              </div>
+            </section>
+          </div>
+
+          <div class="page" data-density="soft">
+            <section class="panel panel-facts" aria-labelledby="facts-heading">
+              <header class="page-header">
+                <p class="page-kicker">Page 4 · Assumptions</p>
+                <h2 class="page-heading" id="facts-heading" tabindex="-1">Common myths</h2>
+                <p class="facts-intro">Select a card to reveal the context behind these common beliefs.</p>
+              </header>
+              <div class="fact-grid">
+                <button class="fact-card" type="button" aria-pressed="false">
+                  <span class="fact-card-inner">
+                    <span class="fact-card-face fact-card-front">Drought only affects rural farms because cities rely on piped water.</span>
+                    <span class="fact-card-face fact-card-back" aria-hidden="true">The El Niño warning covers drinking water shortages across the country. Piped systems depend on the same rainfall.</span>
+                  </span>
+                </button>
+                <button class="fact-card" type="button" aria-pressed="false">
+                  <span class="fact-card-inner">
+                    <span class="fact-card-face fact-card-front">Saving water requires new equipment.</span>
+                    <span class="fact-card-face fact-card-back" aria-hidden="true">Turning off the tap while brushing saves water at no cost. The habit is the equipment.</span>
+                  </span>
+                </button>
+                <button class="fact-card" type="button" aria-pressed="false">
+                  <span class="fact-card-inner">
+                    <span class="fact-card-face fact-card-front">My household's use does not matter compared to agriculture.</span>
+                    <span class="fact-card-face fact-card-back" aria-hidden="true">Domestic water is part of the same system. When households waste less, pressure on shared supplies drops.</span>
+                  </span>
+                </button>
+                <button class="fact-card" type="button" aria-pressed="false">
+                  <span class="fact-card-inner">
+                    <span class="fact-card-face fact-card-front">One person's habit cannot change a reservoir.</span>
+                    <span class="fact-card-face fact-card-back" aria-hidden="true">Infrastructure works when the habits at the end of the pipe match it. The two are not separate problems.</span>
+                  </span>
+                </button>
+              </div>
+            </section>
+          </div>
+
+          <div class="page" data-density="soft">
+            <section class="panel panel-calculator" aria-labelledby="calculator-heading">
+              <div class="calculator-content">
+                <p class="page-kicker">Small habits, big numbers</p>
+                <h2 class="page-heading" id="calculator-heading" tabindex="-1">See the Liters</h2>
+                <p class="calculator-copy">The average running tap may use about 6 liters a minute. Drag the slider to see your yearly savings.</p>
+                <output class="savings-number" for="minutes-slider" aria-live="polite">0 liters</output>
+                <label class="slider-label" for="minutes-slider">Minutes saved each day in one year: <span class="minutes-value">0</span></label>
+                <input class="minutes-slider" id="minutes-slider" type="range" min="0" max="10" step="1" value="0">
+                <p class="bottle-count" aria-live="polite">That is roughly <strong>0</strong> large water bottles.</p>
+                <p class="bottle-note">Based on 1.5-liter bottles.</p>
+              </div>
+            </section>
+          </div>
+
+          <div class="page" data-density="soft">
+            <section class="panel panel-pledge" aria-labelledby="pledge-heading">
+              <header class="page-header">
+                <p class="page-kicker">Page 6 · Make a commitment</p>
+                <h2 class="page-heading" id="pledge-heading" tabindex="-1">Make It Official</h2>
+              </header>
+              <p class="pledge-intro">People who make a commitment in front of others are more likely to follow through. Stating it out loud makes the habit harder to abandon.</p>
+              <form class="pledge-form">
+                <div class="pledge-name-row">
+                  <label for="pledge-name">Name</label>
+                  <input id="pledge-name" name="name" autocomplete="name" maxlength="20" aria-label="Name, up to 20 characters">
+                  <label class="pledge-anonymous">
+                    <input name="anonymous" type="checkbox">
+                    <span>Stay anonymous</span>
+                  </label>
+                  <span class="pledge-character-count" id="pledge-name-count" aria-hidden="true">0 / 20</span>
+                </div>
+                <label for="pledge-habit">Water-saving habit</label>
+                <textarea id="pledge-habit" name="habit" placeholder="What specific change do you want to make to improve your water-conservation habits?" maxlength="280" aria-label="Water-saving habit, up to 280 characters" required></textarea>
+                <span class="pledge-character-count" id="pledge-habit-count" aria-hidden="true">0 / 280</span>
+                <label class="pledge-check">
+                  <input name="commitment" type="checkbox" required>
+                  <span>I want to make this change in my habits.</span>
+                </label>
+                <button class="pledge-submit" type="submit">Post message</button>
+              </form>
+              <p class="pledge-error" role="alert" hidden></p>
+              <div class="pledge-success" hidden role="status" aria-live="polite">
+                <svg class="pledge-checkmark" viewBox="0 0 100 100" aria-hidden="true">
+                  <path d="M18 52 40 73 83 27"></path>
+                </svg>
+                <p class="pledge-count"></p>
+              </div>
+            </section>
+          </div>
+
+          <div class="page" data-density="soft">
+            <section class="panel panel-community" aria-labelledby="community-heading">
+              <header class="page-header">
+                <p class="page-kicker">Page 7 · Habits</p>
+                <h2 class="page-heading" id="community-heading" tabindex="-1">Community Voices</h2>
+              </header>
+              <div class="community-notes" role="region" aria-label="Recent water-saving commitments from the community" aria-busy="true" tabindex="0"></div>
+              <p class="community-footer">These are community commitments. Yours could be next.</p>
+            </section>
+          </div>
+
+          <div class="page page-cover" data-density="hard">
+            <section class="panel panel-closing" aria-labelledby="closing-heading">
+              <span class="cover-waterline" aria-hidden="true">
+                <svg viewBox="0 0 900 180" preserveAspectRatio="none">
+                  <use href="assets/svg/cover-waterline.svg#cover-waterline"></use>
+                </svg>
+              </span>
+              <span class="cover-paper">
+                <span class="cover-main">
+                  <span class="cover-kicker">Your next step · Start today</span>
+                  <h2 class="cover-title page-heading" id="closing-heading" tabindex="-1">Small habits.<br>Lasting change.</h2>
+                  <span class="cover-subtitle">Turn off the tap while brushing, reuse water where you can, and report leaks. Small choices help protect the water we share.</span>
+                  <span class="cover-footer">
+                    <span class="cover-rule"></span>
+                    <span class="cover-credit">
+                      <span>Choose one water-saving habit and practise it every day.</span>
+                      <span>Keep it up for a week, then invite someone at home to join you.</span>
+                      <span>A practical water-wise guide by students.</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+    <nav class="magazine-controls" id="magazine-controls" aria-label="Magazine navigation">
+      <span class="magazine-progress-track" role="slider" aria-label="Go to page" aria-controls="magazine" aria-orientation="horizontal" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" aria-valuetext="Page 1 of 5" tabindex="0">
+        <span class="magazine-progress-fill"></span>
+      </span>
+      <button class="magazine-control-arrow" id="previous-page" type="button" aria-label="Previous page" disabled>←</button>
+      <span class="magazine-page-number" id="magazine-page-number" aria-live="polite">1 / 5</span>
+      <button class="magazine-control-arrow" id="next-page" type="button" aria-label="Next page">→</button>
+    </nav>
+    <div class="sr-only" id="count-announcement" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
