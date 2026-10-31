@@ -1,0 +1,7 @@
+.media-toggle {
+  transition: opacity 180ms ease;
+}
+
+.reveal-flap {
+  transition: box-shadow 120ms linear;
+}

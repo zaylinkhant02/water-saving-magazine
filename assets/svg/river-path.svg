@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 130" role="img" aria-labelledby="river-title">
+  <title id="river-title">A river winding from the highlands toward the delta</title>
+  <path d="M30 22 C144 10 128 65 235 56 S327 24 388 52 S460 104 548 79 S626 76 689 104" fill="none" stroke="#0B3C5D" stroke-opacity=".16" stroke-width="16" stroke-linecap="round"/>
+  <path class="river-draw" d="M30 22 C144 10 128 65 235 56 S327 24 388 52 S460 104 548 79 S626 76 689 104" fill="none" stroke="#1CA3EC" stroke-width="5" stroke-linecap="round"/>
+  <path class="river-shimmer" d="M30 22 C144 10 128 65 235 56 S327 24 388 52 S460 104 548 79 S626 76 689 104" fill="none" stroke="#FBF8F0" stroke-width="2" stroke-linecap="round" stroke-dasharray="14 24" stroke-dashoffset="0">
+    <animate id="river-shimmer" attributeName="stroke-dashoffset" from="0" to="-76" dur="12s" repeatCount="indefinite" begin="indefinite"/>
+  </path>
+</svg>

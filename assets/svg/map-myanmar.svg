@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 360" role="img" aria-labelledby="map-title">
+  <title id="map-title">Map of Myanmar with Sagaing, Mandalay, and Magway marked in amber</title>
+  <path d="M111 12 L137 22 147 42 167 49 170 69 189 79 188 101 205 119 197 141 211 157 199 180 208 200 191 218 192 240 175 257 171 281 155 297 151 320 136 341 127 329 129 309 118 291 121 270 108 250 114 229 99 208 104 187 90 169 99 149 85 130 92 110 79 90 88 71 80 51 96 34Z" fill="#D9D3C3" stroke="#0B3C5D" stroke-width="2"/>
+  <path d="M93 101 Q124 92 160 110 M101 158 Q136 147 184 163 M108 211 Q142 201 187 216" fill="none" stroke="#0B3C5D" stroke-opacity=".26" stroke-width="1.5"/>
+  <g data-region="sagaing" aria-hidden="true">
+    <circle cx="127" cy="111" r="8" fill="#F4A261" fill-opacity=".26"/>
+    <circle cx="127" cy="111" r="3" fill="#0B3C5D"/>
+  </g>
+  <g data-region="mandalay" aria-hidden="true">
+    <circle cx="143" cy="164" r="8" fill="#F4A261" fill-opacity=".26"/>
+    <circle cx="143" cy="164" r="3" fill="#0B3C5D"/>
+  </g>
+  <g data-region="magway" aria-hidden="true">
+    <circle cx="128" cy="204" r="8" fill="#F4A261" fill-opacity=".26"/>
+    <circle cx="128" cy="204" r="3" fill="#0B3C5D"/>
+  </g>
+  <style>
+    [data-region] { transition: opacity 400ms ease; opacity: .48; }
+    [data-region].is-lit { opacity: 1; }
+    [data-region].is-lit circle:first-child { fill-opacity: .92; }
+  </style>
+</svg>
