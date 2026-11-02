@@ -1,6 +1,7 @@
 import { initMagazine } from "./magazine.js";
 import { initPanelMotion } from "./panel-motion.js";
 import { initPageInteractions } from "./page-interactions.js";
+import { initGreywaterGame } from "./greywater-game.js";
 
 const PAGE_FLIP_SOURCE = "https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js";
 
@@ -18,48 +19,47 @@ function loadPageFlip() {
   });
 }
 
-function initReservoirMedia() {
-  const media = document.querySelector(".reservoir-media");
-  const video = media?.querySelector(".reservoir-video");
-  const toggle = media?.querySelector(".media-toggle");
-  const errorMessage = media?.querySelector(".media-error");
-  if (!media || !video || !toggle || !errorMessage) return;
+function initMagazineVideos() {
+  document.querySelectorAll(".reservoir-media, .readiness-media").forEach((media) => {
+    const video = media.querySelector(".reservoir-video");
+    const toggle = media.querySelector(".media-toggle");
+    const errorMessage = media.querySelector(".media-error");
+    if (!video || !toggle || !errorMessage) return;
 
-  let visible = false;
+    const showVideoError = () => {
+      video.hidden = true;
+      errorMessage.hidden = false;
+      toggle.hidden = true;
+    };
 
-  const showVideoError = () => {
-    video.hidden = true;
-    errorMessage.hidden = false;
-    toggle.hidden = true;
-  };
+    const playVideo = () => {
+      if (video.hidden) return;
+      video.play().catch(showVideoError);
+    };
 
-  const playVideo = () => {
-    if (video.hidden) return;
-    video.play().catch(showVideoError);
-  };
+    document.addEventListener("magazineviewchange", (event) => {
+      const visible = event.detail.open && event.detail.page === Number(media.dataset.visiblePage);
+      if (visible) playVideo();
+      else video.pause();
+    });
 
-  video.addEventListener("play", () => {
-    toggle.setAttribute("aria-label", toggle.dataset.pauseLabel);
-  });
-  video.addEventListener("pause", () => {
+    toggle.addEventListener("click", () => {
+      if (video.hidden) return;
+      if (video.paused) playVideo();
+      else video.pause();
+    });
+
+    video.addEventListener("play", () => {
+      toggle.setAttribute("aria-label", toggle.dataset.pauseLabel);
+    });
+    video.addEventListener("pause", () => {
+      toggle.setAttribute("aria-label", toggle.dataset.playLabel);
+    });
+    video.addEventListener("error", showVideoError);
+
+    video.pause();
     toggle.setAttribute("aria-label", toggle.dataset.playLabel);
   });
-  video.addEventListener("error", showVideoError);
-
-  document.addEventListener("magazineviewchange", (event) => {
-    visible = event.detail.open && !event.detail.turned;
-    if (visible) playVideo();
-    else video.pause();
-  });
-
-  toggle.addEventListener("click", () => {
-    if (video.hidden) return;
-    if (video.paused) playVideo();
-    else video.pause();
-  });
-
-  video.pause();
-  toggle.setAttribute("aria-label", toggle.dataset.playLabel);
 }
 
 async function init() {
@@ -72,7 +72,8 @@ async function init() {
     initMagazine();
     initPanelMotion();
     initPageInteractions();
-    initReservoirMedia();
+    initGreywaterGame();
+    initMagazineVideos();
     stage?.setAttribute("aria-busy", "false");
     loadingScreen?.classList.add("is-ready");
     window.setTimeout(() => {

@@ -1,6 +1,6 @@
 const PAGE_WIDTH = 460;
 const PAGE_HEIGHT = 620;
-const PAGE_COUNT = 8;
+const PAGE_COUNT = 10;
 const VIEW_COUNT = PAGE_COUNT / 2 + 1;
 const BOTTOM_CORNER_SIZE = 48;
 const DRAG_THRESHOLD = 6;
@@ -151,7 +151,7 @@ export function initMagazine() {
   const PageFlip = window.St?.PageFlip;
 
   if (!magazine || !viewport || !previousButton || !nextButton || !pageNumber || !progressTrack || !progressFill || !stage || pages.length !== PAGE_COUNT) {
-    throw new Error("The magazine must contain eight pages and all navigation controls.");
+    throw new Error("The magazine must contain ten pages and all navigation controls.");
   }
   if (typeof PageFlip !== "function") {
     throw new Error("The PageFlip browser bundle failed to load.");

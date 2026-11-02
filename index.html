@@ -61,7 +61,7 @@
 
           <div class="page" data-density="soft">
             <section class="panel panel-reservoir" id="panel-reservoir" aria-label="The water that passes through">
-              <div class="reservoir-media" aria-label="Pixabay footage of a mountain stream">
+              <div class="reservoir-media" data-visible-page="2" aria-label="Pixabay footage of a mountain stream">
                 <img class="reservoir-poster" src="assets/video/reservoir-poster.jpg" alt="">
                 <video class="reservoir-video" src="assets/video/reservoir-loop.mp4" poster="assets/video/reservoir-poster.jpg" muted loop playsinline preload="metadata" aria-label="Looping footage of a mountain stream"></video>
                 <p class="media-error" role="status" hidden>Video unavailable; showing the poster instead.</p>
@@ -192,7 +192,108 @@
                 <h2 class="page-heading" id="community-heading" tabindex="-1">Community Voices</h2>
               </header>
               <div class="community-notes" role="region" aria-label="Recent water-saving commitments from the community" aria-busy="true" tabindex="0"></div>
-              <p class="community-footer">These are community commitments. Yours could be next.</p>
+              <p class="community-footer">These are from people who want to share change in habits and practices. When you answer on the left, yours will be added above too!</p>
+            </section>
+          </div>
+
+          <div class="page" data-density="soft">
+            <section class="panel panel-readiness" aria-labelledby="readiness-heading">
+              <header class="page-header">
+                <p class="page-kicker">Page 8 · Readiness</p>
+                <h2 class="page-heading" id="readiness-heading" tabindex="-1">Preparing for a Dry Season</h2>
+              </header>
+              <p class="readiness-intro">Municipal water cuts or failing household wells can leave a home without a clean water supply for several days. This checklist covers the essential supplies to store and actions to take so your household is ready before a shortage occurs.</p>
+              <ul class="readiness-checklist" aria-label="Drought preparedness checklist">
+                <li>
+                  <label class="readiness-item">
+                    <input class="readiness-checkbox" type="checkbox" aria-label="Store three days of drinking water per person, about 4 liters per person per day">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path class="readiness-checkmark" d="m5 12.5 4.5 4.5L19 7"></path></svg>
+                    <span class="readiness-text">Store three days of drinking water per person, about 4 liters per person per day.</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="readiness-item">
+                    <input class="readiness-checkbox" type="checkbox" aria-label="Keep water purification tablets or a filter for emergency use">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path class="readiness-checkmark" d="m5 12.5 4.5 4.5L19 7"></path></svg>
+                    <span class="readiness-text">Keep water purification tablets or a filter for emergency use.</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="readiness-item">
+                    <input class="readiness-checkbox" type="checkbox" aria-label="Fill bathtubs or large containers if a water cut is announced">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path class="readiness-checkmark" d="m5 12.5 4.5 4.5L19 7"></path></svg>
+                    <span class="readiness-text">Fill bathtubs or large containers if a water cut is announced.</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="readiness-item">
+                    <input class="readiness-checkbox" type="checkbox" aria-label="Keep a bucket with a lid for flushing toilets using greywater">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path class="readiness-checkmark" d="m5 12.5 4.5 4.5L19 7"></path></svg>
+                    <span class="readiness-text">Keep a bucket with a lid for flushing toilets using greywater.</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="readiness-item">
+                    <input class="readiness-checkbox" type="checkbox" aria-label="Save the local water authority's emergency number">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path class="readiness-checkmark" d="m5 12.5 4.5 4.5L19 7"></path></svg>
+                    <span class="readiness-text">Save the local water authority's emergency number.</span>
+                  </label>
+                </li>
+              </ul>
+              <div class="readiness-media" data-visible-page="8" aria-label="Pexels footage of a container being filled with water">
+                <img class="reservoir-poster" src="assets/images/filling-water-poster.jpg" alt="">
+                <video class="reservoir-video" src="assets/video/filling-water.mp4" poster="assets/images/filling-water-poster.jpg" muted loop playsinline preload="metadata" aria-label="Looping footage of a container being filled with water"></video>
+                <p class="media-error" role="status" hidden>Video unavailable; showing the poster instead.</p>
+                <button class="media-toggle" type="button" aria-label="Pause video" data-pause-label="Pause video" data-play-label="Play video">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path class="icon-pause" d="M7 5h4v14H7zM14 5h4v14h-4z"/>
+                    <path class="icon-play" d="M8 5v14l11-7z"/>
+                  </svg>
+                </button>
+                <a class="media-credit" href="https://www.pexels.com/video/watching-pouring-water-inside-the-bottle-3752528/" target="_blank" rel="noreferrer">Footage: Pexels</a>
+              </div>
+            </section>
+          </div>
+
+          <div class="page" data-density="soft">
+            <section class="panel panel-greywater" aria-labelledby="greywater-heading">
+              <header class="page-header">
+                <p class="page-kicker">Page 9 · Mini-quiz</p>
+                <h2 class="page-heading" id="greywater-heading" tabindex="-1">Save Every Drop</h2>
+              </header>
+              <p class="greywater-intro">During a dry season, water from sinks and showers can be reused for flushing or gardening. Water containing harsh chemicals must be disposed of properly. To learn more, try the quiz below to learn which water sources are safe to reuse!</p>
+              <div class="greywater-game" data-state="ready">
+                <div class="greywater-round">
+                  <p class="greywater-progress" id="greywater-progress">Source 1 of 5</p>
+                  <h3 class="greywater-source" id="greywater-source" aria-live="polite" aria-atomic="true">Water from rinsing vegetables</h3>
+                  <img class="greywater-image" id="greywater-image" src="assets/images/rinsing-vegetables.jpg" alt="Fresh vegetables being rinsed with water">
+                  <div class="greywater-destinations" role="group" aria-label="Choose a destination">
+                    <button class="greywater-destination" type="button" data-destination="toilet">Toilet</button>
+                    <button class="greywater-destination" type="button" data-destination="garden">Garden</button>
+                    <button class="greywater-destination" type="button" data-destination="trash">Trash</button>
+                  </div>
+                  <div class="greywater-answer-icon greywater-correct-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48">
+                      <circle cx="24" cy="24" r="20"></circle>
+                      <path d="m14 24 7 7 14-15"></path>
+                    </svg>
+                  </div>
+                  <div class="greywater-answer-icon greywater-incorrect-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48">
+                      <circle cx="24" cy="24" r="20"></circle>
+                      <path d="m17 17 14 14m0-14L17 31"></path>
+                    </svg>
+                  </div>
+                  <p class="greywater-feedback" id="greywater-feedback" role="status" aria-live="polite" aria-atomic="true">Choose where this water can go.</p>
+                  <button class="greywater-next" type="button" hidden>Next</button>
+                </div>
+                <div class="greywater-results" hidden>
+                  <h3 class="greywater-results-heading" tabindex="-1">Results</h3>
+                  <p class="greywater-score"></p>
+                  <p class="greywater-takeaway">Reuse water only when it is safe. Water with harsh cleaners should not go on plants or be used for flushing.</p>
+                  <button class="greywater-restart" type="button">Play Again</button>
+                </div>
+              </div>
             </section>
           </div>
 
@@ -231,11 +332,11 @@
       </div>
     </div>
     <nav class="magazine-controls" id="magazine-controls" aria-label="Magazine navigation">
-      <span class="magazine-progress-track" role="slider" aria-label="Go to page" aria-controls="magazine" aria-orientation="horizontal" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" aria-valuetext="Page 1 of 5" tabindex="0">
+      <span class="magazine-progress-track" role="slider" aria-label="Go to page" aria-controls="magazine" aria-orientation="horizontal" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1" aria-valuetext="Page 1 of 6" tabindex="0">
         <span class="magazine-progress-fill"></span>
       </span>
       <button class="magazine-control-arrow" id="previous-page" type="button" aria-label="Previous page" disabled>&larr;</button>
-      <span class="magazine-page-number" id="magazine-page-number" aria-live="polite">1 / 5</span>
+      <span class="magazine-page-number" id="magazine-page-number" aria-live="polite">1 / 6</span>
       <button class="magazine-control-arrow" id="next-page" type="button" aria-label="Next page">→</button>
     </nav>
     <div class="sr-only" id="count-announcement" aria-live="polite" aria-atomic="true"></div>

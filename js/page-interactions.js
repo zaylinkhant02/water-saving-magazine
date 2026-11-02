@@ -118,6 +118,19 @@ function initSavingsCalculator() {
   update();
 }
 
+function initReadinessChecklist() {
+  document.querySelectorAll(".readiness-checkbox").forEach((checkbox) => {
+    checkbox.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" || event.repeat) return;
+
+      event.preventDefault();
+      checkbox.checked = !checkbox.checked;
+      checkbox.dispatchEvent(new Event("input", { bubbles: true }));
+      checkbox.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+  });
+}
+
 function ordinal(value) {
   const lastTwoDigits = value % 100;
   if (lastTwoDigits >= 11 && lastTwoDigits <= 13) return `${value}th`;
@@ -218,6 +231,7 @@ function initPledgeForm() {
 export function initPageInteractions() {
   initFactCards();
   initSavingsCalculator();
+  initReadinessChecklist();
   initCommunity();
   initPledgeForm();
 }
