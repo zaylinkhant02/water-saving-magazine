@@ -25,6 +25,8 @@
         <div id="magazine" aria-label="Magazine pages">
           <div class="page page-cover" data-density="hard">
             <section class="panel panel-cover" aria-label="Front cover">
+              <img class="cover-poster" src="assets/video/reservoir-poster.jpg" alt="" aria-hidden="true">
+              <video class="cover-video" src="assets/video/drought.m4v" poster="assets/video/reservoir-poster.jpg" autoplay loop muted playsinline preload="metadata" aria-hidden="true"></video>
               <span class="cover-waterline" aria-hidden="true">
                 <svg viewBox="0 0 900 180" preserveAspectRatio="none">
                   <use href="assets/svg/cover-waterline.svg#cover-waterline"></use>
@@ -55,6 +57,10 @@
                   <use href="assets/svg/cover-waterline.svg#cover-waterline"></use>
                 </svg>
               </span>
+              <figure class="left-landscape">
+                <img src="assets/images/dry-reservoir-landscape.jpg" alt="An arid landscape with exposed dry earth and barren rock formations.">
+                <figcaption>A dry landscape shaped by water scarcity.</figcaption>
+              </figure>
               <p class="left-copy">In the weeks before the monsoon breaks, the soil across the dry zone turns to dust. The reservoirs recede, exposing the cracked mud of the riverbed, and the wells that supply nearby villages begin to pull up silt. It is a predictable seasonal clock, and it starts ticking earlier every year.</p>
             </section>
           </div>
@@ -137,6 +143,7 @@
           <div class="page" data-density="soft">
             <section class="panel panel-calculator" aria-labelledby="calculator-heading">
               <div class="calculator-content">
+                <img class="calculator-image" src="assets/images/water-in-drought.jpg" alt="A reservoir receding to reveal cracked earth during a drought.">
                 <p class="page-kicker">Small habits, big numbers</p>
                 <h2 class="page-heading" id="calculator-heading" tabindex="-1">See the Liters</h2>
                 <p class="calculator-copy">The average running tap may use about 6 liters a minute. Drag the slider to see your yearly savings.</p>
@@ -243,6 +250,7 @@
               <div class="readiness-media" data-visible-page="8" aria-label="Pexels footage of a container being filled with water">
                 <img class="reservoir-poster" src="assets/images/filling-water-poster.jpg" alt="">
                 <video class="reservoir-video" src="assets/video/filling-water.mp4" poster="assets/images/filling-water-poster.jpg" muted loop playsinline preload="metadata" aria-label="Looping footage of a container being filled with water"></video>
+                <img class="readiness-pip" src="assets/images/drought-landscape.jpg" alt="A drought-stricken landscape with cracked earth and a shrinking reservoir.">
                 <p class="media-error" role="status" hidden>Video unavailable; showing the poster instead.</p>
                 <button class="media-toggle" type="button" aria-label="Pause video" data-pause-label="Pause video" data-play-label="Play video">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -307,7 +315,10 @@
               <span class="cover-paper">
                 <span class="cover-main">
                   <span class="cover-kicker">Start today</span>
-                  <h2 class="cover-title page-heading" id="closing-heading" tabindex="-1">Small habits,<br>but lasting change</h2>
+                  <h2 class="cover-title page-heading closing-title-art" id="closing-heading" tabindex="-1">
+                    <img src="assets/images/drought-picture.jpg" alt="" aria-hidden="true">
+                    <span>Small habits,<br>but lasting change</span>
+                  </h2>
                   <span class="cover-subtitle">Turn off the tap while brushing, reuse water where you can, and report leaks. Small choices help protect the water we share.</span>
                   <span class="cover-footer">
                     <span class="cover-rule"></span>

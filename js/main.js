@@ -62,12 +62,41 @@ function initMagazineVideos() {
   });
 }
 
+function initCoverVideo() {
+  const video = document.querySelector(".cover-video");
+  if (!video) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let coverVisible = true;
+
+  const updatePlayback = () => {
+    const shouldPlay = coverVisible && !reducedMotion.matches;
+    video.autoplay = shouldPlay;
+
+    if (shouldPlay) {
+      video.play().catch(() => {
+        video.hidden = true;
+      });
+    } else {
+      video.pause();
+    }
+  };
+
+  reducedMotion.addEventListener("change", updatePlayback);
+  document.addEventListener("magazineviewchange", (event) => {
+    coverVisible = event.detail.cover;
+    updatePlayback();
+  });
+  updatePlayback();
+}
+
 async function init() {
   const stage = document.querySelector("#magazine-stage");
   const loadingScreen = document.querySelector("#magazine-loading");
   const loadingMessage = document.querySelector("#magazine-loading-message");
 
   try {
+    initCoverVideo();
     await loadPageFlip();
     initMagazine();
     initPanelMotion();

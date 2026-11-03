@@ -272,6 +272,7 @@ export function initMagazine() {
       detail: {
         open,
         page: open ? pageIndex + 1 : null,
+        cover: atCover,
         turned: pageIndex !== 1
       }
     }));
