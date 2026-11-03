@@ -83,7 +83,7 @@ function initCoverVideo() {
   let coverVisible = true;
 
   const updatePlayback = () => {
-    const shouldPlay = coverVisible && !reducedMotion.matches;
+    const shouldPlay = coverVisible && document.visibilityState === "visible" && !reducedMotion.matches;
     video.autoplay = shouldPlay;
 
     if (shouldPlay) {
@@ -103,6 +103,7 @@ function initCoverVideo() {
     coverVisible = event.detail.cover;
     updatePlayback();
   });
+  updatePlayback();
 }
 
 async function init() {
@@ -111,7 +112,6 @@ async function init() {
   const loadingMessage = document.querySelector("#magazine-loading-message");
 
   try {
-    initCoverVideo();
     await loadPageFlip();
     initMagazine();
     initPanelMotion();
@@ -122,6 +122,7 @@ async function init() {
     loadingScreen?.classList.add("is-ready");
     window.setTimeout(() => {
       if (loadingScreen) loadingScreen.hidden = true;
+      initCoverVideo();
       preloadPageServices();
     }, 240);
   } catch (error) {
