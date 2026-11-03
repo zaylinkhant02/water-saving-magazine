@@ -36,6 +36,27 @@ const WATER_SOURCES = [
   }
 ];
 
+export function preloadGreywaterImages() {
+  return Promise.all(WATER_SOURCES.map(({ image: source }) => new Promise((resolve, reject) => {
+    const image = new Image();
+    image.addEventListener("load", async () => {
+      try {
+        await image.decode();
+        resolve();
+      } catch (error) {
+        reject(error);
+      }
+    }, { once: true });
+    image.addEventListener("error", () => reject(new Error(`Unable to load quiz image: ${source}`)), { once: true });
+    image.src = source;
+
+    if (image.complete) {
+      if (image.naturalWidth === 0) reject(new Error(`Unable to load quiz image: ${source}`));
+      else image.decode().then(resolve, reject);
+    }
+  })));
+}
+
 export function initGreywaterGame() {
   const game = document.querySelector(".greywater-game");
   const round = document.querySelector(".greywater-round");

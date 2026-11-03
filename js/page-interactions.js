@@ -248,17 +248,9 @@ export function initPageInteractions() {
   initFactCards();
   initSavingsCalculator();
   initReadinessChecklist();
-  let communityRequested = false;
-  document.addEventListener("magazineviewchange", (event) => {
-    if (communityRequested || ![6, 7].includes(event.detail.page)) return;
-    communityRequested = true;
-    void initCommunity();
-  });
   initPledgeForm();
 }
 
-export function preloadPageServices() {
-  void loadFirestore().catch((error) => {
-    console.error("Unable to prepare Firestore.", error);
-  });
+export async function preloadPageServices() {
+  await initCommunity();
 }

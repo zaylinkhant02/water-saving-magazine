@@ -1,7 +1,7 @@
 import { initMagazine } from "./magazine.js";
 import { initPanelMotion } from "./panel-motion.js";
 import { initPageInteractions, preloadPageServices } from "./page-interactions.js";
-import { initGreywaterGame } from "./greywater-game.js";
+import { initGreywaterGame, preloadGreywaterImages } from "./greywater-game.js";
 
 const PAGE_FLIP_SOURCE = "https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js";
 
@@ -106,6 +106,30 @@ function initCoverVideo() {
   updatePlayback();
 }
 
+function waitForImage(image) {
+  const imageSource = image.currentSrc || image.src;
+  const waitUntilLoaded = image.complete
+    ? image.naturalWidth
+      ? Promise.resolve()
+      : Promise.reject(new Error(`Unable to load image: ${imageSource}`))
+    : new Promise((resolve, reject) => {
+      image.addEventListener("load", resolve, { once: true });
+      image.addEventListener("error", () => reject(new Error(`Unable to load image: ${imageSource}`)), { once: true });
+    });
+
+  return waitUntilLoaded.then(() => image.decode());
+}
+
+function waitForCoverVideoFrame(video) {
+  if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) return Promise.resolve();
+
+  return new Promise((resolve, reject) => {
+    video.addEventListener("loadeddata", resolve, { once: true });
+    video.addEventListener("error", () => reject(new Error("Unable to load the cover video.")), { once: true });
+    video.load();
+  });
+}
+
 async function init() {
   const stage = document.querySelector("#magazine-stage");
   const loadingScreen = document.querySelector("#magazine-loading");
@@ -118,12 +142,21 @@ async function init() {
     initPageInteractions();
     initGreywaterGame();
     initMagazineVideos();
+    const coverVideo = document.querySelector(".cover-video");
+    if (!coverVideo) throw new Error("The cover video is missing.");
+
+    await Promise.all([
+      preloadPageServices(),
+      Promise.all([...document.images].map(waitForImage)),
+      preloadGreywaterImages(),
+      waitForCoverVideoFrame(coverVideo),
+    ]);
+
     stage?.setAttribute("aria-busy", "false");
     loadingScreen?.classList.add("is-ready");
     window.setTimeout(() => {
       if (loadingScreen) loadingScreen.hidden = true;
       initCoverVideo();
-      preloadPageServices();
     }, 240);
   } catch (error) {
     console.error("Unable to prepare the magazine.", error);
