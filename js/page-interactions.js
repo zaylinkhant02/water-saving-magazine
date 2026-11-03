@@ -256,3 +256,9 @@ export function initPageInteractions() {
   });
   initPledgeForm();
 }
+
+export function preloadPageServices() {
+  void loadFirestore().catch((error) => {
+    console.error("Unable to prepare Firestore.", error);
+  });
+}

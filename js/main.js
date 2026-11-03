@@ -1,6 +1,6 @@
 import { initMagazine } from "./magazine.js";
 import { initPanelMotion } from "./panel-motion.js";
-import { initPageInteractions } from "./page-interactions.js";
+import { initPageInteractions, preloadPageServices } from "./page-interactions.js";
 import { initGreywaterGame } from "./greywater-game.js";
 
 const PAGE_FLIP_SOURCE = "https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js";
@@ -34,14 +34,24 @@ function initMagazineVideos() {
 
     const playVideo = () => {
       if (video.hidden) return;
-      video.play().catch(showVideoError);
+      video.play().catch((error) => {
+        if (error.name === "AbortError" || error.name === "NotAllowedError") return;
+        console.error("Unable to play magazine video.", error);
+        showVideoError();
+      });
+    };
+
+    let mediaVisible = false;
+    const updatePlayback = () => {
+      if (mediaVisible && document.visibilityState === "visible") playVideo();
+      else video.pause();
     };
 
     document.addEventListener("magazineviewchange", (event) => {
-      const visible = event.detail.open && event.detail.page === Number(media.dataset.visiblePage);
-      if (visible) playVideo();
-      else video.pause();
+      mediaVisible = event.detail.open && event.detail.page === Number(media.dataset.visiblePage);
+      updatePlayback();
     });
+    document.addEventListener("visibilitychange", updatePlayback);
 
     toggle.addEventListener("click", () => {
       if (video.hidden) return;
@@ -55,7 +65,10 @@ function initMagazineVideos() {
     video.addEventListener("pause", () => {
       toggle.setAttribute("aria-label", toggle.dataset.playLabel);
     });
-    video.addEventListener("error", showVideoError);
+    video.addEventListener("error", () => {
+      console.error("Unable to load magazine video.", video.error);
+      showVideoError();
+    });
 
     video.pause();
     toggle.setAttribute("aria-label", toggle.dataset.playLabel);
@@ -74,8 +87,10 @@ function initCoverVideo() {
     video.autoplay = shouldPlay;
 
     if (shouldPlay) {
-      video.play().catch(() => {
-        video.hidden = true;
+      video.play().catch((error) => {
+        if (error.name !== "AbortError" && error.name !== "NotAllowedError") {
+          console.error("Unable to play the cover video.", error);
+        }
       });
     } else {
       video.pause();
@@ -83,19 +98,11 @@ function initCoverVideo() {
   };
 
   reducedMotion.addEventListener("change", updatePlayback);
+  document.addEventListener("visibilitychange", updatePlayback);
   document.addEventListener("magazineviewchange", (event) => {
     coverVisible = event.detail.cover;
     updatePlayback();
   });
-
-  const startWhenIdle = () => {
-    if (coverVisible && !reducedMotion.matches) updatePlayback();
-  };
-  if ("requestIdleCallback" in window) {
-    window.requestIdleCallback(startWhenIdle, { timeout: 1500 });
-  } else {
-    window.setTimeout(startWhenIdle, 250);
-  }
 }
 
 async function init() {
@@ -104,8 +111,8 @@ async function init() {
   const loadingMessage = document.querySelector("#magazine-loading-message");
 
   try {
-    await loadPageFlip();
     initCoverVideo();
+    await loadPageFlip();
     initMagazine();
     initPanelMotion();
     initPageInteractions();
@@ -115,6 +122,7 @@ async function init() {
     loadingScreen?.classList.add("is-ready");
     window.setTimeout(() => {
       if (loadingScreen) loadingScreen.hidden = true;
+      preloadPageServices();
     }, 240);
   } catch (error) {
     console.error("Unable to prepare the magazine.", error);
