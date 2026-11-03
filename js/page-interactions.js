@@ -250,7 +250,7 @@ export function initPageInteractions() {
   initReadinessChecklist();
   let communityRequested = false;
   document.addEventListener("magazineviewchange", (event) => {
-    if (communityRequested || event.detail.page !== 7) return;
+    if (communityRequested || ![6, 7].includes(event.detail.page)) return;
     communityRequested = true;
     void initCommunity();
   });
