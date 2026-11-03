@@ -1,5 +1,19 @@
-import { addDoc, collection, getCountFromServer, getDocs, orderBy, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
-import { db } from "./firebase.js";
+const FIRESTORE_SOURCE = "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+let firestoreModules;
+
+function loadFirestore() {
+  if (!firestoreModules) {
+    firestoreModules = Promise.all([
+      import("./firebase.js"),
+      import(FIRESTORE_SOURCE),
+    ]).then(([firebase, firestore]) => ({ db: firebase.db, ...firestore }))
+      .catch((error) => {
+        firestoreModules = undefined;
+        throw error;
+      });
+  }
+  return firestoreModules;
+}
 
 async function initCommunity() {
   const notes = document.querySelector(".community-notes");
@@ -17,6 +31,7 @@ async function initCommunity() {
   showState("Loading community commitments…", true);
 
   try {
+    const { db, collection, getDocs, orderBy, query } = await loadFirestore();
     const recentPledges = query(collection(db, "pledges"), orderBy("createdAt", "desc"));
     const snapshot = await getDocs(recentPledges);
 
@@ -196,6 +211,7 @@ function initPledgeForm() {
     if (submitButton) submitButton.disabled = true;
 
     try {
+      const { db, addDoc, collection, getCountFromServer, serverTimestamp } = await loadFirestore();
       await addDoc(collection(db, "pledges"), {
         Name: anonymous ? "Anonymous" : name,
         Habit: habit,
@@ -232,6 +248,11 @@ export function initPageInteractions() {
   initFactCards();
   initSavingsCalculator();
   initReadinessChecklist();
-  initCommunity();
+  let communityRequested = false;
+  document.addEventListener("magazineviewchange", (event) => {
+    if (communityRequested || event.detail.page !== 7) return;
+    communityRequested = true;
+    void initCommunity();
+  });
   initPledgeForm();
 }

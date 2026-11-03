@@ -87,7 +87,15 @@ function initCoverVideo() {
     coverVisible = event.detail.cover;
     updatePlayback();
   });
-  updatePlayback();
+
+  const startWhenIdle = () => {
+    if (coverVisible && !reducedMotion.matches) updatePlayback();
+  };
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(startWhenIdle, { timeout: 1500 });
+  } else {
+    window.setTimeout(startWhenIdle, 250);
+  }
 }
 
 async function init() {
@@ -96,8 +104,8 @@ async function init() {
   const loadingMessage = document.querySelector("#magazine-loading-message");
 
   try {
-    initCoverVideo();
     await loadPageFlip();
+    initCoverVideo();
     initMagazine();
     initPanelMotion();
     initPageInteractions();
