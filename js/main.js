@@ -4,6 +4,11 @@ import { initPageInteractions, preloadPageServices } from "./page-interactions.j
 import { initGreywaterGame, preloadGreywaterImages } from "./greywater-game.js";
 
 const PAGE_FLIP_SOURCE = "https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js";
+const ISOLATED_EVENTS = ["click", "mousedown", "mouseup", "touchstart", "touchend"];
+
+ISOLATED_EVENTS.forEach((eventType) => {
+  window.addEventListener(eventType, (event) => event.stopPropagation());
+});
 
 function loadPageFlip() {
   if (typeof window.St?.PageFlip === "function") return Promise.resolve();
