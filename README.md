@@ -1,4 +1,4 @@
-A magazine about water conservation to prepare for droughts for English PBL.
+An interactive magazine focused on water conservation for drought preparation, for an English project.
 
 ## Vercel Web Analytics
 
